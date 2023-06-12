@@ -34,7 +34,8 @@ module.exports = {
     extensions: ['.js', '.jsx', '.ts', '.tsx'],
     alias: {
       '@src': path.resolve(process.cwd(), 'src'),
-      '@route': path.resolve(process.cwd(), 'route')
+      '@route': path.resolve(process.cwd(), 'route'),
+      '@build': path.resolve(process.cwd(), 'build')
     }
   },
   devtool: 'source-map' // 输出 source-map 方便直接调试 ES6 源码

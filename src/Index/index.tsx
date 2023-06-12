@@ -26,7 +26,7 @@ class Main extends Component<IProps, IState> {
     const { show } = this.state;
     return (
         <div>
-          {show && <h1>Hello PDD</h1>}
+          {show && <h1>Hello World</h1>}
           <button onClick={this.onToggle}>{show ? 'hide' : 'show'}</button>
         </div>
     );
