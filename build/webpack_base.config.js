@@ -1,5 +1,6 @@
-const path = require('path');
+const resolve = require('./utils/resolve');
 const getPagesConfig = require('./config/getPagesConfig');
+const realModule = require('./utils/realModule');
 
 const { entry, htmlPlugins } = getPagesConfig();
 
@@ -7,17 +8,48 @@ module.exports = {
   // TS 执行入口文件
   entry,
   output: {
-    path: path.resolve(process.cwd(), 'dist'),
+    path: resolve('dist'),
     filename: 'assets/js/[name]-[chunkhash:8].js',
     clean: true,
   },
   resolve: {
     extensions: ['.js', '.jsx', '.ts', '.tsx'],
     alias: {
-      '@src': path.resolve(process.cwd(), 'src'),
-      '@app': path.resolve(process.cwd(), 'src/app'),
-      '@route': path.resolve(process.cwd(), 'route'),
-      '@build': path.resolve(process.cwd(), 'build'),
+      '@src': resolve('src'),
+      '@app': resolve('src/app'),
+      '@route': resolve('route'),
+      '@build': resolve('build'),
+    }
+  },
+  stats: 'errors-only',
+  optimization: {
+    runtimeChunk: 'single',
+    splitChunks: {
+      chunks: 'initial',
+      maxAsyncRequests: 30,
+      maxInitialRequests: 30,
+      minChunks: 1,
+      cacheGroups: {
+        vendor: {
+          name: 'vendor',
+          chunks: 'all',
+          test: function (module) {
+            return /node_modules[\\/](?!react)/.test(realModule(module.resource));
+          }
+        },
+        react_vendor: {
+          name: 'react_vendor',
+          chunks: 'all',
+          test: function (module) {
+            return /node_modules[\\/](?=react)/.test(realModule(module.resource));
+          }
+        },
+        common: {
+          name: 'commons_vendor',
+          chunks: 'all',
+          minChunks: 2
+        }
+      }
     }
   },
   module: {
