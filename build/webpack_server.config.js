@@ -2,7 +2,7 @@ const path = require('path');
 const nodeExternals = require('webpack-node-externals');
 
 module.exports = {
-  mode: 'development',
+  mode: 'production',
   // JS 执行入口文件
   entry: './app.js',
   // 为了不把 Node.js 内置的模块打包进输出文件中，例如 fs net 模块等
@@ -24,9 +24,49 @@ module.exports = {
         use: ['babel-loader']
       },
       {
-        // CSS 代码不能被打包进用于服务端的代码中去，忽略掉 CSS 文件
-        test: /\.css/,
-        use: ['ignore-loader'],
+        test: /\.css$/,
+        use: [
+          // CSS 代码不能被打包进用于服务端的代码中去，忽略掉 CSS 文件
+          'ignore-loader',
+          {
+            loader: 'css-loader',
+            options: {
+              modules: true,
+              importLoaders: 1,
+            }
+          },
+          'postcss-loader'
+        ]
+      },
+      {
+        test: /\.s[ac]ss$/,
+        use: [
+          // CSS 代码不能被打包进用于服务端的代码中去，忽略掉 CSS 文件
+          'ignore-loader',
+          {
+            loader: 'css-loader',
+            options: {
+              modules: true,
+              importLoaders: 1,
+            }
+          },
+          'postcss-loader',
+          'sass-loader'
+        ]
+      },
+      {
+        test: /\.(jpe?g|png|gif|svg)$/,
+        type: 'asset',
+        generator: {
+          filename: 'assets/images/[name]-[hash:8][ext]'
+        }
+      },
+      {
+        test: /\.(ttf|woff|woff2|otf|eot)$/i,
+        type: 'asset/resource',
+        generator: {
+          filename: 'assets/fonts/[name]-[contenthash:8][ext]'
+        }
       },
     ]
   },
@@ -34,6 +74,7 @@ module.exports = {
     extensions: ['.js', '.jsx', '.ts', '.tsx'],
     alias: {
       '@src': path.resolve(process.cwd(), 'src'),
+      '@app': path.resolve(process.cwd(), 'src/app'),
       '@route': path.resolve(process.cwd(), 'route'),
       '@build': path.resolve(process.cwd(), 'build')
     }

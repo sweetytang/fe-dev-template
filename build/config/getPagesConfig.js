@@ -1,6 +1,5 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const { toCamel } = require('../utils/transformCase');
 const pageNames = require('./pageNames');
 
 function getPagesConfig () {
@@ -20,6 +19,6 @@ function getPagesConfig () {
   }
 
   return { entry, htmlPlugins };
-};
+}
 
 module.exports = getPagesConfig;
