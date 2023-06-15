@@ -18,6 +18,10 @@ module.exports = {
         "@typescript-eslint",
         "react"
     ],
+    ignorePatterns: [
+        'node_modules',
+        'tests'
+    ],
     "rules": {
     }
 }
