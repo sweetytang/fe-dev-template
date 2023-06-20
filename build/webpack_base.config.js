@@ -64,7 +64,15 @@ module.exports = {
       },
       {
         test: /\.[jt]sx?$/,
-        use: "babel-loader",
+        use: [
+          {
+            loader: "thread-loader",
+            options: {
+              workers: 3,
+            },
+          },
+          "babel-loader",
+        ],
       },
       {
         test: /\.css$/,
