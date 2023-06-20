@@ -1,6 +1,6 @@
-import React from 'react';
-import { render } from 'react-dom';
-import Main from '@app/Index';
+import React from "react";
+import { render } from "react-dom";
+import Main from "@app/Index";
 
 // 把根组件渲染到 DOM 树上
-render(<Main />, window.document.getElementById('main'));
+render(<Main />, window.document.getElementById("main"));

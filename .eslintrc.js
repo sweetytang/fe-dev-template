@@ -1,27 +1,44 @@
 module.exports = {
-    "env": {
-        "browser": true,
-        "es2021": true,
-        "node": true
+  root: true,
+  env: {
+    browser: true,
+    es2022: true,
+    node: true,
+    jest: true
+  },
+  extends: [
+    'eslint:recommended',
+    'prettier',
+    'plugin:prettier/recommended',
+  ],
+  overrides: [
+    {
+      files: ['**/*.js', '**/*.jsx'],
+      excludedFiles: ['.eslintrc.js'],
+      parser: '@babel/eslint-parser',
+      parserOptions: {
+        sourceType: 'module',
+        allowImportExportEverywhere: false,
+        ecmaFeatures: {
+          jsx: true,
+          globalReturn: false,
+        },
+      },
+      extends: [
+        'plugin:react/recommended',
+      ]
     },
-    "extends": [
-        "eslint:recommended",
-        "plugin:@typescript-eslint/recommended",
-        "plugin:react/recommended"
-    ],
-    "parser": "@typescript-eslint/parser",
-    "parserOptions": {
-        "ecmaVersion": "latest",
-        "sourceType": "module"
-    },
-    "plugins": [
-        "@typescript-eslint",
-        "react"
-    ],
-    ignorePatterns: [
-        'node_modules',
-        'tests'
-    ],
-    "rules": {
+    {
+      files: ['**/*.ts', '**/*.tsx'],
+      extends: [
+        'plugin:react/recommended',
+        'plugin:@typescript-eslint/recommended'
+      ]
     }
+  ],
+  rules: {
+    'arrow-body-style': 'off',
+    'prefer-arrow-callback': 'off',
+    'semi': 'off'
+  }
 }

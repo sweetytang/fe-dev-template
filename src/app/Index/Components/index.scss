@@ -1,37 +1,37 @@
 $task-item-color: rgb(100 100 100 / 80%);
 
 @font-face {
-  font-family: 'My Font';
-  src: url('@src/assets/fonts/myFont.ttf') format('truetype');
+  font-family: "My Font";
+  src: url("@src/assets/fonts/myFont.ttf") format("truetype");
   font-style: italic;
 }
 
 :global(html, body) {
-  width: 100%;
-  height: 100%;
   margin: 0;
   padding: 0;
+  width: 100%;
+  height: 100%;
 }
 
 :global(#main) {
   position: relative;
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
+  overflow: hidden auto;
   margin: 0 auto;
   width: 100%;
   max-width: 640px;
   height: 100%;
-  background-image: url('@src/assets/images/cat.jpg');
   background-size: cover;
-  overflow: hidden auto;
+  background-image: url("@src/assets/images/cat.jpg");
 }
 
 .task {
   position: relative;
   display: flex;
   flex-direction: column;
-  margin-top: .5rem;
+  margin-top: 0.5rem;
   cursor: pointer;
 }
 
@@ -39,9 +39,9 @@ $task-item-color: rgb(100 100 100 / 80%);
   display: flex;
   align-items: center;
   height: 100px;
-  line-height: 1.2;
-  font-size: .2rem;
-  color: $task-item-color;
+  font-size: 0.2rem;
+  font-family: "My Font", sans-serif;
   white-space: nowrap;
-  font-family: 'My Font', sans-serif;
+  color: $task-item-color;
+  line-height: 1.2;
 }

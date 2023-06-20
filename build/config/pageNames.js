@@ -1,6 +1,3 @@
-const pageNames = [
-    'index',
-    'search'
-];
+const pageNames = ["index", "search"];
 
 module.exports = pageNames;

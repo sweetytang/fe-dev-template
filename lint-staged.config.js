@@ -1,10 +1,10 @@
 module.exports = {
-  '*.{js,jsx,ts,tsx}': [
-      'eslint',
+  '**/*.{js,jsx,ts,tsx}': [
+      'eslint --fix',
       'git add .'
   ],
-  '*.{css,scss}': [
-    'stylelint',
+  '**/*.{css,scss}': [
+    'stylelint --cache --fix',
     'git add .'
   ]
 }

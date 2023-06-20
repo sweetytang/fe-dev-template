@@ -1,6 +1,6 @@
-const DEV_TEXT = 'development';
+const DEV_TEXT = "development";
 
-const PRO_TEXT = 'production';
+const PRO_TEXT = "production";
 
 const NODE_ENV = process.env.NODE_ENV;
 
@@ -13,5 +13,5 @@ module.exports = {
   PRO_TEXT,
   isDev,
   NODE_ENV,
-  CWD_PATH
-}
+  CWD_PATH,
+};
