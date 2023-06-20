@@ -11,7 +11,8 @@
     "prepare": "husky install",
     "test": "jest",
     "eslint": "eslint --ext js,jsx,ts,tsx . --fix",
-    "stylelint": "stylelint **/*.scss --cache --fix"
+    "stylelint": "stylelint **/*.scss --cache --fix",
+    "tsc": "tsc"
   },
   "dependencies": {
     "@babel/runtime": "^7.22.5",
