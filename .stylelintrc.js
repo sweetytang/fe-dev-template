@@ -4,7 +4,7 @@ module.exports = {
   extends: [
     'stylelint-config-standard',
     'stylelint-prettier/recommended', // 开启prettier推荐规则
-    'stylelint-config-prettier' // 关闭stylelint和prettier冲突的规则
+    // 'stylelint-config-prettier' // 关闭stylelint和prettier冲突的规则
   ],
   plugins: [
     'stylelint-order'

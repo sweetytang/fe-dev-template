@@ -5,10 +5,8 @@ declare module "*.json";
 declare module "*.svg";
 
 declare module "@loadable/component" {
-  import { ReactElement } from "react";
-
   interface IDynamicFn {
-    (): ReactElement;
+    (): any;
   }
-  export default function loadable(dynamic: IDynamicFn): ReactElement;
+  export default function loadable(dynamic: IDynamicFn): any;
 }
