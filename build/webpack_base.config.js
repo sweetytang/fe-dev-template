@@ -1,3 +1,4 @@
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const resolve = require("./utils/resolve");
 const getPagesConfig = require("./config/getPagesConfig");
 const realModule = require("./utils/realModule");
@@ -13,7 +14,8 @@ module.exports = {
     clean: true,
   },
   resolve: {
-    extensions: [".js", ".jsx", ".ts", ".tsx"],
+    modules: [resolve("node_modules")],
+    extensions: [".ts", ".tsx", ".js", ".jsx"],
     alias: {
       "@src": resolve("src"),
       "@app": resolve("src/app"),
@@ -21,7 +23,7 @@ module.exports = {
       "@build": resolve("build"),
     },
   },
-  stats: "errors-only",
+  // stats: "errors-only",
   optimization: {
     runtimeChunk: "single",
     splitChunks: {
@@ -71,13 +73,19 @@ module.exports = {
               workers: 3,
             },
           },
-          "babel-loader",
+          {
+            loader: "babel-loader",
+            options: {
+              cacheDirectory: true,
+              cacheCompression: false,
+            },
+          },
         ],
       },
       {
         test: /\.css$/,
         use: [
-          "style-loader",
+          MiniCssExtractPlugin.loader,
           {
             loader: "css-loader",
             options: {
@@ -91,7 +99,7 @@ module.exports = {
       {
         test: /\.s[ac]ss$/,
         use: [
-          "style-loader",
+          MiniCssExtractPlugin.loader,
           {
             loader: "css-loader",
             options: {
@@ -119,5 +127,11 @@ module.exports = {
       },
     ],
   },
-  plugins: [...htmlPlugins],
+  plugins: [
+    ...htmlPlugins,
+    new MiniCssExtractPlugin({
+      filename: "assets/css/[name].css",
+      chunkFilename: "assets/css/[name].css",
+    }),
+  ],
 };
